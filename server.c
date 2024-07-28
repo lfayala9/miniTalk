@@ -17,7 +17,7 @@ int	main()
 	int	pid;
 
 	pid = getpid();
-	ft_printf("The server PID is: --> [%d]", pid);
+	ft_printf("The server PID is: --> [%d]\n", pid);
 	pause();
 	return (0);
 }
