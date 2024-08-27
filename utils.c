@@ -1,21 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: layala-s <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 20:13:04 by layala-s          #+#    #+#             */
-/*   Updated: 2024/07/25 20:13:06 by layala-s         ###   ########.fr       */
+/*   Created: 2024/08/06 12:39:02 by layala-s          #+#    #+#             */
+/*   Updated: 2024/08/06 12:40:34 by layala-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef MINITALK_H 
-# define MINITALK_H
-# define _XOPEN_SOURCE 700
 
-# include <signal.h> 
-# include <unistd.h>
-# include <stdio.h>
-# include "printf/ft_printf.h"
+#include <minitalk.h>
 
-#endif
+int	ft_atoi(const char *s)
+{
+	int	res;
+	int	sign;
+	int	i;
+
+	i = 0;
+	res = 0;
+	sign = 1;
+	while ((s[i] >= 9 && s[i] <= 13) || s[i] == 32)
+		i++;
+	if (s[i] == '-')
+		sign = -1;
+	if (s[i] == '-' || s[i] == '+')
+		i++;
+	while (s[i] >= '0' && s[i] <= '9')
+		res = res * 10 + (s[i++] - '0');
+	return (res * sign);
+}

@@ -12,12 +12,25 @@
 
 #include "minitalk.h"
 
-int	main()
+void	sig_handler(int signal)
 {
-	int	pid;
+	if (signal == SIGUSR1)
+		ft_printf("patata %d\n", signal);
+	if (signal == SIGUSR2)
+		ft_printf("pititi %d\n", signal);
+}
+
+int	main(void)
+{
+	struct sigaction	action;
+	pid_t				pid;
 
 	pid = getpid();
-	ft_printf("The server PID is: --> [%d]\n", pid);
-	pause();
+	action.sa_handler = sig_handler;
+	sigaction(SIGUSR1, &action, NULL);
+	sigaction(SIGUSR2, &action, NULL);
+	ft_printf("The server PID is:🥲	 --> [%d]\n", pid);
+	while (1)
+		pause();
 	return (0);
 }
