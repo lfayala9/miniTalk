@@ -39,7 +39,7 @@ int	main(int ac, char **av)
 
 	if (ac != 3)
 	{
-		write(2, "Usage: ./client <PID> <string>\n", 30);
+		write(2, "Usage 👉 ./client <PID> <message>\n", 30);
 		return (1);
 	}
 	pid = ft_atoi(av[1]);
