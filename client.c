@@ -27,7 +27,7 @@ static void	send_str(pid_t pid, char *str)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			usleep(100);
+			// usleep(100);
 		}
 		i++;
 	}
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 		write(2, "Usage: ./client <PID> <string>\n", 30);
 		return (1);
 	}
-	pid = atoi(av[1]);
+	pid = ft_atoi(av[1]);
 	send_str(pid, av[2]);
 	return (0);
 }
