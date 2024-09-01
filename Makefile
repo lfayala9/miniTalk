@@ -11,16 +11,18 @@
 # **************************************************************************** #
 
 FLAGS = -Wall -Wextra -Werror
-SRCS = server.c
+SRCS = server.c client.c utils.c
 OBJS = ${SRCS:.c=.o}
 #INCLUDE = -I include
 
-all:	server
+all:	server client
 
 server: $(OBJS)
 			@make -C printf
-			@gcc $(FLAGS) server.c -I include printf/libftprintf.a -o server
-
+			@cc $(FLAGS) server.c -I include printf/libftprintf.a -o server
+client: $(OBJS)
+			@make -C printf
+			@gcc $(FLAGS) client.c utils.c -o client
 clean:	
 		@make clean -C printf
 		@rm -rf $(OBJS)
@@ -28,7 +30,7 @@ clean:
 fclean:	
 		@make fclean -C printf
 		@rm -rf $(OBJS)
-		@rm -rf server
+		@rm -rf server client
 re: all flcean
 
 .PHONY: all re clean fclean

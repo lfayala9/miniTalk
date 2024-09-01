@@ -18,4 +18,6 @@
 # include <stdio.h>
 # include "printf/ft_printf.h"
 
+int	ft_atoi(const char *s);
+
 #endif
