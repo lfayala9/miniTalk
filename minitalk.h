@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef MINITALK_H 
-# define MINITALK_H
-# define _XOPEN_SOURCE 700
+# define MINITALK_H	
 
 # include <signal.h> 
 # include <unistd.h>

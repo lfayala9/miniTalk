@@ -22,7 +22,7 @@ server: $(OBJS)
 			@cc $(FLAGS) server.c -I include printf/libftprintf.a -o server
 client: $(OBJS)
 			@make -C printf
-			@gcc $(FLAGS) client.c utils.c -o client
+			@cc $(FLAGS) client.c utils.c -o client
 clean:	
 		@make clean -C printf
 		@rm -rf $(OBJS)

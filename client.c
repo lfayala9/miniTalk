@@ -20,14 +20,15 @@ static void	send_str(pid_t pid, char *str)
 	i = 0;
 	while (str[i])
 	{
-		bit = 8;
-		while (bit--)
+		bit = 7;
+		while (bit >= 0)
 		{
 			if (str[i] & (1 << bit))
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
-			// usleep(100);
+			usleep(100);
+			bit--;
 		}
 		i++;
 	}
