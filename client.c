@@ -18,7 +18,7 @@ static void	send_str(pid_t pid, char *str)
 	int	i;
 	
 	kill(pid, SIGUSR1);
-	usleep(100);
+	usleep(10);
 	i = 0;
 	while (str[i])
 	{
@@ -26,10 +26,16 @@ static void	send_str(pid_t pid, char *str)
 		while (bit--)
 		{
 			if (str[i] & (1 << bit))
-				kill(pid, SIGUSR1);
+			{
+				if (kill(pid, SIGUSR1) == -1)
+					exit(EXIT_FAILURE);
+			}
 			else
-				kill(pid, SIGUSR2);
-			usleep(100);
+			{
+				if (kill(pid, SIGUSR2) == -1)
+					exit(EXIT_FAILURE);
+			}
+			usleep(10);
 		}
 		i++;
 	}
