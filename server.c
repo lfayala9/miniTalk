@@ -15,7 +15,7 @@
 void	sig_handler(int signal, siginfo_t *info, void *context)
 {
 	static int	bit_count = 0;
-	static char	character = 0;
+	static unsigned char	character = 0;
 
 	(void)context;
 	if (signal == SIGUSR1 && bit_count == 0 && character == 0)

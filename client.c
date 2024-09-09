@@ -65,14 +65,16 @@ void	conf_handler(int sig)
 int	main(int ac, char **av)
 {
 	int	pid;
+	struct sigaction	handler;
 
 	if (ac != 3)
 	{
 		write(2, "Usage 👉 ./client <PID> <message>\n", 30);
 		return (1);
 	}
-	signal(SIGUSR1, &conf_handler);
-	signal(SIGUSR2, &conf_handler);
+	handler.sa_handler = conf_handler;
+	sigaction(SIGUSR1, &handler, NULL);
+	sigaction(SIGUSR2, &handler, NULL);
 	pid = ft_atoi(av[1]);
 	send_str(pid, av[2]);
 	return (0);
