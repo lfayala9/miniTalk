@@ -31,6 +31,6 @@ fclean:
 		@make fclean -C printf
 		@rm -rf $(OBJS)
 		@rm -rf server client
-re: all flcean
+re: all fclean
 
 .PHONY: all re clean fclean
