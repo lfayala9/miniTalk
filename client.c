@@ -17,20 +17,14 @@ volatile sig_atomic_t conf_signal;
 static void	check_conf(void)
 {
 	while(conf_signal != 1)
-		usleep(1);
+		usleep(100);
 }
 
-static void	init(pid_t pid)
-{
-	kill(pid, SIGUSR1);
-	usleep(1);
-}
 static void	send_str(pid_t pid, char *str)
 {
 	int	bit;
 	int	i;
-
-	init(pid);
+	
 	i = 0;
 	while (str[i])
 	{
@@ -39,21 +33,14 @@ static void	send_str(pid_t pid, char *str)
 		{
 			conf_signal = 0;
 			if (str[i] & (1 << bit))
-			{
-				if (kill(pid, SIGUSR1) == -1)
-					exit(EXIT_FAILURE);
-			}
+				kill(pid, SIGUSR1);
 			else
-			{
-				if (kill(pid, SIGUSR2) == -1)
-					exit(EXIT_FAILURE);
-			}
+				kill(pid, SIGUSR2);
 			check_conf();
 		}
 		i++;
 	}
 }
-
 void	conf_handler(int sig)
 {
 	if (sig == SIGUSR1)
@@ -61,7 +48,6 @@ void	conf_handler(int sig)
 	else if (sig == SIGUSR2)
 		exit(EXIT_SUCCESS);
 }
-
 int	main(int ac, char **av)
 {
 	int	pid;
