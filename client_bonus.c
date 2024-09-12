@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: layala-s <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/27 14:50:42 by layala-s          #+#    #+#             */
-/*   Updated: 2024/08/27 14:50:45 by layala-s         ###   ########.fr       */
+/*   Created: 2024/09/12 13:24:44 by layala-s          #+#    #+#             */
+/*   Updated: 2024/09/12 13:24:47 by layala-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 volatile sig_atomic_t	g_conf_signal;
 
@@ -20,10 +20,28 @@ static void	check_conf(void)
 		usleep(100);
 }
 
-static void	init(pid_t pid)
+static void add_nl(pid_t pid)
 {
-	kill(pid, SIGUSR1);
-	usleep(100);
+	int	bit;
+	int	i;
+
+	i = 0;
+    bit = 8;
+    while (bit--)
+    {
+        g_conf_signal = 0;
+        if ('\n' & (1 << bit))
+        {
+            if (kill(pid, SIGUSR1) == -1)
+                exit(EXIT_FAILURE);
+        }
+        else
+        {
+            if (kill(pid, SIGUSR2) == -1)
+                exit(EXIT_FAILURE);
+        }
+        check_conf();
+    }
 }
 
 static void	send_str(pid_t pid, char *str)
@@ -31,7 +49,6 @@ static void	send_str(pid_t pid, char *str)
 	int	bit;
 	int	i;
 
-	init(pid);
 	i = 0;
 	while (str[i])
 	{
@@ -53,8 +70,8 @@ static void	send_str(pid_t pid, char *str)
 		}
 		i++;
 	}
+	add_nl(pid);
 }
-
 static void	conf_handler(int signal)
 {
 	if (signal == SIGUSR1)

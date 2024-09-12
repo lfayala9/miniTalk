@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: layala-s <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 17:25:39 by layala-s          #+#    #+#             */
-/*   Updated: 2024/07/25 17:25:41 by layala-s         ###   ########.fr       */
+/*   Created: 2024/09/12 13:15:51 by layala-s          #+#    #+#             */
+/*   Updated: 2024/09/12 13:17:01 by layala-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "minitalk_bonus.h"
 
 void	sig_handler(int signal, siginfo_t *info, void *context)
 {
@@ -18,11 +18,6 @@ void	sig_handler(int signal, siginfo_t *info, void *context)
 	static unsigned char			c = 0;
 
 	(void)context;
-	if (signal == SIGUSR1 && bit_count == 0 && c == 0)
-	{
-		write(1, "\n", 1);
-		return ;
-	}
 	if (signal == SIGUSR1)
 		c |= (1 << (7 - bit_count));
 	bit_count++;

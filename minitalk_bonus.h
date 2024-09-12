@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: layala-s <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 20:13:04 by layala-s          #+#    #+#             */
-/*   Updated: 2024/07/25 20:13:06 by layala-s         ###   ########.fr       */
+/*   Created: 2024/09/12 13:22:07 by layala-s          #+#    #+#             */
+/*   Updated: 2024/09/12 13:22:11 by layala-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef MINITALK_H 
-# define MINITALK_H
+#ifndef MINITALK_BONUS_H 
+# define MINITALK_BONUS_H
 
 # include <signal.h> 
 # include <unistd.h>
