@@ -17,7 +17,7 @@ This function is used to change the way a program handles the siganls. The signa
 This is the basic prototype of sigaction():
 
 ```c
-<code>int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)</code>
+int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
 ```
 <code>int signum</code> represents the signal number that you want to handle (i.e SIGINT (10), SIGUSR1(12), etc)
 
