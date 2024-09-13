@@ -15,8 +15,10 @@ So for this project we need the client to send messages to the server, like a we
 This function is used to change the way a program handles the siganls. The signals as we know are a asynchronous form of communication in UNIX. So, sigaction() allows the programmer to specify an personalized action that has to be executed when the process receives a signal. 
 
 This is the basic prototype of sigaction():
-<code>int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)</code>
 
+```c
+<code>int sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)</code>
+```
 <code>int signum</code> represents the signal number that you want to handle (i.e SIGINT (10), SIGUSR1(12), etc)
 
 <code>const struct sigaction *act</code> Represents a pointer to a structure sigaction that defines the action that we are gonna use when we receive the signal
