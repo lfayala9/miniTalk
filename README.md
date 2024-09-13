@@ -9,7 +9,7 @@ The PID of a process is its identifier, like a passport, and to send a signal to
 
 So for this project we need the client to send messages to the server, like a websocket come on. But we can't send those strings directly and there's the challenge. We need to send that message byte to byte and the server has to re-build the message that we sent in binary
 
-## Functions used:
+## Functions I used:
 
 ### sigaction()
 This function is used to change the way a program handles the siganls. The signals as we know are a asynchronous form of communication in UNIX. So, sigaction() allows the programmer to specify an personalized action that has to be executed when the process receives a signal. 
@@ -25,11 +25,11 @@ This is the basic prototype of sigaction():
 
 So, sigaction is technically a function but actually it is a structure that have this definition
 
-<code>
+```c
 struct sigaction {
     void (*sa_handler)(int);        // Pointer to the function that will handle the signal
     void (*sa_sigaction)(int, siginfo_t *, void *); // Alternative to receive aditional info
     sigset_t sa_mask;                // Set of signals that will be blocked during the signal handling
     int sa_flags;                    // Flags that modifies the signal behaviour
 };
-</code>
+```
